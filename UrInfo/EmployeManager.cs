@@ -12,7 +12,8 @@ namespace UrInfo
         public static List<Employe> SelectAllEmploye()
         {
             //on ouvre une connexion grace à la classe static () 
-            MySqlConnection connexion = BddConnexion.OuvrirConnexion();
+            BddConnexion.OuvrirConnexion();
+            MySqlConnection connexion = BddConnexion.connexion;
             MySqlCommand commandeBDD = connexion.CreateCommand();
             // On ecris la requête
             commandeBDD.CommandText = "SELECT * FROM Employe ;";
@@ -38,17 +39,18 @@ namespace UrInfo
                 Employe unEmployer = new Employe(int.Parse(lecteur["id"].ToString()), lecteur["login"].ToString(), lecteur["mdp"].ToString(), lecteur["type"].ToString());
                 listeEmployes.Add(unEmployer);
             }
-            BddConnexion.FermerConnexion(connexion);
+            BddConnexion.FermerConnexion();
             return listeEmployes;
         }
 
         public static Employe getEmploye(string login)
         {
-            Employe employe = null;
+            Employe employe = new Employe();
             try {
                 //pour recuperer mon user avec le login en input
                 //1- connexion a la db
-                MySqlConnection connexion = BddConnexion.OuvrirConnexion();
+                BddConnexion.OuvrirConnexion();
+                MySqlConnection connexion = BddConnexion.connexion;
                 //2- la requête sql
                 MySqlCommand commandeBDD = connexion.CreateCommand();
                 commandeBDD.CommandText = "SELECT * FROM Employe WHERE login=@login;";
@@ -56,18 +58,23 @@ namespace UrInfo
                 //3- on execute la requete
                 MySqlDataReader lecteur = commandeBDD.ExecuteReader();
                 //on recupere le resultat de la requete
-                employe = new Employe(int.Parse(lecteur["id"].ToString()), lecteur["login"].ToString(), lecteur["mdp"].ToString(), lecteur["type"].ToString());
+                employe.Id = int.Parse(lecteur["id"].ToString());
+                employe.Name = lecteur["login"].ToString();
+                employe.Mdp = lecteur["mdp"].ToString();
+                employe.Type = lecteur["type"].ToString();
                 //4- on ferme la connexion à la db
-                BddConnexion.FermerConnexion(connexion);
+                BddConnexion.FermerConnexion();
             } catch (Exception e) {
                 Console.WriteLine(e.Message);
             }
+            MessageBox.Show(employe.ToString());
             return employe;
         }
         public static bool updateType(string id, string valeur)
         {
             bool success;
-            MySqlConnection connexion = BddConnexion.OuvrirConnexion();
+            BddConnexion.OuvrirConnexion();
+            MySqlConnection connexion = BddConnexion.connexion;
             MySqlCommand commandeBDD = connexion.CreateCommand();
 
             commandeBDD.CommandText = "UPDATE Employe SET type = @valeur WHERE id = @id";
@@ -84,7 +91,7 @@ namespace UrInfo
                 // echec
                 success = false;
             }
-            BddConnexion.FermerConnexion(connexion);
+            BddConnexion.FermerConnexion();
             return success;
         }
     }

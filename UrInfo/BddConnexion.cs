@@ -14,33 +14,31 @@ namespace UrInfo
         private static string database = "urinfostock";
         private static string UserId = "root";
         private static string password = "";
+        private static string infosConnex = "server=" + server + ";port=" + port + ";database=" + database + ";User Id=" + UserId + ";password=" + password + ";";
+        public static MySqlConnection connexion = new MySqlConnection(infosConnex);
 
 
         /// <summary>
         /// private static string infosConnex = "server=localhost;port=3306;database=bdd_urinfo;User Id=urInfoApplication;password=remi";
         /// </summary>
         /// <returns></returns>
-
-        public static MySqlConnection OuvrirConnexion()
+        
+        public static async void OuvrirConnexion()
         {
-            string infosConnex = $"server={server};port={port};database{database};User Id={UserId};password={password};";
-            MySqlConnection connexion;
-            connexion = new MySqlConnection(infosConnex);
             try
             {
-                connexion.Open();
+                await connexion.OpenAsync();
             }
             catch (Exception e) {
                 Console.WriteLine(e.Message);
                 //A voir ce que l’on fait en cas d'exception ...
             }
-            return connexion;
         }
-        public static void FermerConnexion(MySqlConnection connexion)
+        public static async void FermerConnexion()
         {
             try
             {
-                connexion.Close();
+                await connexion.CloseAsync();
             }
             catch (Exception e)
             {

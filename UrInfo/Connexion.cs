@@ -17,13 +17,15 @@ namespace UrInfo
         private string loginErrorMessage = "";
         private string password = "";
         private string passwordErrorMessage = "";
-        private Employe loggedEmploye;
+        private Employe loggedEmploye = new Employe();
 
         public Connexion()
         {
             InitializeComponent();
             textBox_login.Text = "Saisir votre login";
+            label_loginError.Text = loginErrorMessage;
             textBox_password.Text = "Saisir votre password";
+            label_passwordError.Text = passwordErrorMessage;
         }
 
         private void textBox_login_TextChanged(object sender, EventArgs e)
@@ -47,16 +49,15 @@ namespace UrInfo
         private void button_seConnecter_Click(object sender, EventArgs e)
         {
             bool testLogin = validationLogin(this.login);
-            bool testPassword = validationLogin(this.password);
+            bool testPassword = validationPassword(this.password);
             if(testLogin && testPassword)
             {
                 Menu commandes = new Menu(this.loggedEmploye, this );
-                commandes.Show();
                 textBox_login.Text = "";
                 label_loginError.Text = "";
                 textBox_password.Text = "";
                 label_passwordError.Text = "";
-
+                commandes.Show();
                 this.Hide();
             }
             else

@@ -18,14 +18,12 @@ namespace UrInfo
 
         private void bt_modifier_Click(object sender, EventArgs e)
         {
-            EmployeManager employeManager = new EmployeManager();
-            employeManager.updateType(tb_id.Text,tb_type.Text);
+            EmployeManager.updateType(tb_id.Text,tb_type.Text);
             AfficheAllEmploye();
         }
         void AfficheAllEmploye()
         {
-            EmployeManager employeManager = new EmployeManager();
-            employeList = employeManager.SelectAllEmploye();
+            employeList = EmployeManager.SelectAllEmploye();
             dataGridView.DataSource = employeList;
         }
 

@@ -32,7 +32,7 @@
             this.label_loggedEmploye_Name = new System.Windows.Forms.Label();
             this.btn_seDeconnecter = new System.Windows.Forms.Button();
             this.btn_listeCommandes = new System.Windows.Forms.Button();
-            this.btn_rechercherCommande = new System.Windows.Forms.Button();
+            this.btn_chercherUneCommande = new System.Windows.Forms.Button();
             this.flowLayoutPanel_Recherche = new System.Windows.Forms.FlowLayoutPanel();
             this.textBox_inputRecherche = new System.Windows.Forms.TextBox();
             this.comboBox_ChercherPar = new System.Windows.Forms.ComboBox();
@@ -75,7 +75,7 @@
             // btn_listeCommandes
             // 
             this.btn_listeCommandes.AutoSize = true;
-            this.btn_listeCommandes.Location = new System.Drawing.Point(336, 85);
+            this.btn_listeCommandes.Location = new System.Drawing.Point(334, 85);
             this.btn_listeCommandes.Name = "btn_listeCommandes";
             this.btn_listeCommandes.Size = new System.Drawing.Size(126, 25);
             this.btn_listeCommandes.TabIndex = 3;
@@ -83,16 +83,16 @@
             this.btn_listeCommandes.UseVisualStyleBackColor = true;
             this.btn_listeCommandes.Click += new System.EventHandler(this.btn_listeCommandes_Click);
             // 
-            // btn_rechercherCommande
+            // btn_chercherUneCommande
             // 
-            this.btn_rechercherCommande.AutoSize = true;
-            this.btn_rechercherCommande.Location = new System.Drawing.Point(314, 116);
-            this.btn_rechercherCommande.Name = "btn_rechercherCommande";
-            this.btn_rechercherCommande.Size = new System.Drawing.Size(163, 25);
-            this.btn_rechercherCommande.TabIndex = 4;
-            this.btn_rechercherCommande.Text = "Rechercher une commande";
-            this.btn_rechercherCommande.UseVisualStyleBackColor = true;
-            this.btn_rechercherCommande.Click += new System.EventHandler(this.btn_rechercherCommande_Click);
+            this.btn_chercherUneCommande.AutoSize = true;
+            this.btn_chercherUneCommande.Location = new System.Drawing.Point(314, 116);
+            this.btn_chercherUneCommande.Name = "btn_chercherUneCommande";
+            this.btn_chercherUneCommande.Size = new System.Drawing.Size(163, 25);
+            this.btn_chercherUneCommande.TabIndex = 4;
+            this.btn_chercherUneCommande.Text = "Chercher une commande";
+            this.btn_chercherUneCommande.UseVisualStyleBackColor = true;
+            this.btn_chercherUneCommande.Click += new System.EventHandler(this.btn_chercherUneCommande_Click);
             // 
             // flowLayoutPanel_Recherche
             // 
@@ -149,6 +149,7 @@
             this.btn_RetourAuMenu.TabIndex = 7;
             this.btn_RetourAuMenu.Text = "Retour au menu";
             this.btn_RetourAuMenu.UseVisualStyleBackColor = true;
+            this.btn_RetourAuMenu.Click += new System.EventHandler(this.btn_RetourAuMenu_Click);
             // 
             // Menu
             // 
@@ -158,7 +159,7 @@
             this.Controls.Add(this.btn_RetourAuMenu);
             this.Controls.Add(this.dataGridView_listeCommandes);
             this.Controls.Add(this.flowLayoutPanel_Recherche);
-            this.Controls.Add(this.btn_rechercherCommande);
+            this.Controls.Add(this.btn_chercherUneCommande);
             this.Controls.Add(this.btn_listeCommandes);
             this.Controls.Add(this.btn_seDeconnecter);
             this.Controls.Add(this.label_loggedEmploye_Name);
@@ -179,7 +180,7 @@
         private Label label_loggedEmploye_Name;
         private Button btn_seDeconnecter;
         private Button btn_listeCommandes;
-        private Button btn_rechercherCommande;
+        private Button btn_chercherUneCommande;
         private FlowLayoutPanel flowLayoutPanel_Recherche;
         private TextBox textBox_inputRecherche;
         private ComboBox comboBox_ChercherPar;
